@@ -188,6 +188,8 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+F4\fP \(en pulsemixer (audio control)
 .ITEM
+\f(CWMod+F5\fP \(en Toggle runit services (similar to systemctl enable/disable)
+.ITEM
 \f(CWMod+F6\fP \(en Transmission torrent client (not installed by default)
 .ITEM
 \f(CWMod+F7\fP \(en Toggle on/off transmission client via dmenu
