@@ -611,7 +611,7 @@ buttonpress(XEvent *e)
 			arg.ui = 1 << i;
 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
 			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - (int)TEXTW(stext) - getsystraywidth()){ /***systray patch***/
+		else if (ev->x > selmon->ww - (int)TEXTW(stext) + lrpad - getsystraywidth()){ /***systray patch***/
 			click = ClkStatusText;
 
 			char *text = rawstext;
@@ -816,6 +816,7 @@ configurenotify(XEvent *e)
 				for (c = m->clients; c; c = c->next)
 					if (c->isfullscreen)
 						resizeclient(c, m->mx, m->my, m->mw, m->mh);
+				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
 				resizebarwin(m); /***systray patch***/
 			}
 			focus(NULL);
@@ -2227,6 +2228,7 @@ togglebar(const Arg *arg)
 {
 	selmon->showbar = !selmon->showbar;
 	updatebarpos(selmon);
+	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
 	resizebarwin(selmon);
 	if (showsystray) {
 		XWindowChanges wc;
